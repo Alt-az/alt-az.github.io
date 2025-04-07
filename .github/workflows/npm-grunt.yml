@@ -25,7 +25,7 @@ jobs:
       run: npm run build
 
     - name: Server
-      run: npm run dev
+      run: tsx server/index.ts
       
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
