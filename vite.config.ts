@@ -18,7 +18,6 @@ export default defineConfig({
         ]
       : []),
   ],
-  base:"/vrd-test/",
   resolve: {
     alias: {
       "@": path.resolve(import.meta.dirname, "client", "src"),
@@ -31,4 +30,5 @@ export default defineConfig({
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
   },
+  base: "/vrd-test/"
 });
