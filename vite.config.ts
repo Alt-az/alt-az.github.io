@@ -18,6 +18,7 @@ export default defineConfig({
         ]
       : []),
   ],
+  base: "/vrd-test/client/index.html",
   resolve: {
     alias: {
       "@": path.resolve(import.meta.dirname, "client", "src"),
