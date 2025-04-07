@@ -487,7 +487,7 @@ var vite_config_default = defineConfig({
       )
     ] : []
   ],
-  base: "/vrd-test",
+  base: "/vrd-test/",
   resolve: {
     alias: {
       "@": path.resolve(import.meta.dirname, "client", "src"),
