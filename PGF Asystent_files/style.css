@@ -1,0 +1,1287 @@
+#smartchatbox_img901621879{
+	width: 300px;
+	height: 520px;
+	overflow: hidden;
+	margin:auto;
+	padding: 0;
+}
+
+#mobileCloseBtn{
+	display:none;
+}
+
+@media (hover: none)  { 
+	#chatbox{
+		display: none;
+	}
+
+	#smartchatbox_img901621879{
+		width: 100%;
+		height: 99%;
+		overflow: hidden;
+		margin:auto;
+		padding: 0;
+	}
+
+
+	#cludoChat{
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+		margin:auto;
+		padding: 0;
+	}
+
+	.cludoChat-box{
+		height: 100%;
+		width: 100%;
+		top: 0;
+		left: 0;
+	}
+
+	#mobileCloseBtn{
+		display: block;
+		float: right;
+		border-radius: 23px;
+		height: 15px;
+		border: none;
+		font-size: 8px;
+		font-family: roboto,Tahoma,Arial;
+		font-weight: 500;
+		color: #01448F;
+	}
+}
+
+#chat,
+#chat:after,
+.cludoChat-chatbox {
+	transition: .6s ease opacity,.6s ease transform;
+}
+
+#chat,
+#close-chat,
+.minim-button,
+.maxi-button,
+.chat-text {
+	font-weight: 700;
+	cursor: pointer;
+	font-family: Arial, sans-serif;
+	text-align: center;
+	height: 20px;
+	line-height: 20px
+}
+
+#chat,
+#close-chat,
+.chatbox {
+	border: 2px solid rgb(1, 16, 34)
+}
+
+#chat:after,
+#chat:before {
+	position: absolute;
+	border-style: solid;
+	content: ""
+}
+
+
+
+#close-chat {
+	position: absolute;
+	top: 2px;
+	right: 2px;
+	font-size: 24px;
+	border: 1px solid #dedede;
+	width: 20px;
+	background: #fefefe;
+	z-index: 2
+}
+
+#minim-chat,
+#maxi-chat {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 20px;
+	line-height: 20px;
+	cursor: pointer;
+	z-index: 1
+}
+
+.minim-button {
+	position: absolute;
+	top: 2px;
+	right: 26px;
+	font-size: 24px;
+	border: 1px solid #dedede;
+	width: 20px;
+	background: #fefefe
+}
+
+.maxi-button {
+	position: absolute;
+	top: 2px;
+	right: 26px;
+	font-size: 24px;
+	border: 1px solid #dedede;
+	width: 20px;
+	background: #fefefe;
+}
+
+.chat-text {
+	position: absolute;
+	top: 5px;
+	left: 10px;
+	font-size: 16px;
+}
+
+#chat {
+	width: 40px;
+	border-radius: 3px;
+	padding: 2px 8px;
+	font-size: 12px;
+	background: #fff;
+	-webkit-transform: translateZ(0);
+	transform: translateZ(0)
+}
+
+#chat:before {
+	border-width: 10px 11px 0 0;
+	border-color: #A8A8A8 transparent transparent;
+	left: 7px;
+	bottom: -10px
+}
+
+#chat:after {
+	border-width: 9px 8px 0 0;
+	border-color: #fff transparent transparent;
+	left: 8px;
+	bottom: -8px
+}
+
+#chat:hover {
+	background: #ddd;
+	-webkit-animation-name: hvr-pulse-grow;
+	animation-name: hvr-pulse-grow;
+	-webkit-animation-duration: .3s;
+	animation-duration: .3s;
+	-webkit-animation-timing-function: linear;
+	animation-timing-function: linear;
+	-webkit-animation-iteration-count: infinite;
+	animation-iteration-count: infinite;
+	-webkit-animation-direction: alternate;
+	animation-direction: alternate
+}
+
+#chat:hover:after {
+	border-color: #ddd transparent transparent!important
+}
+
+.animated-chat {
+	-webkit-animation-duration: 1s;
+	animation-duration: 1s;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+	-webkit-animation-timing-function: ease-in;
+	animation-timing-function: ease-in
+}
+
+@-webkit-keyframes tada {
+	0% {
+		-webkit-transform: scale(1)
+	}
+	10%,
+	20% {
+		-webkit-transform: scale(.9)rotate(-3deg)
+	}
+	30%,
+	50%,
+	70%,
+	90% {
+		-webkit-transform: scale(1.1)rotate(3deg)
+	}
+	40%,
+	60%,
+	80% {
+		-webkit-transform: scale(1.1)rotate(-3deg)
+	}
+	100% {
+		-webkit-transform: scale(1)rotate(0)
+	}
+}
+
+@keyframes tada {
+	0% {
+		transform: scale(1)
+	}
+	10%,
+	20% {
+		transform: scale(.9)rotate(-3deg)
+	}
+	30%,
+	50%,
+	70%,
+	90% {
+		transform: scale(1.1)rotate(3deg)
+	}
+	40%,
+	60%,
+	80% {
+		transform: scale(1.1)rotate(-3deg)
+	}
+	100% {
+		transform: scale(1)rotate(0)
+	}
+}
+
+.tada {
+	-webkit-animation-name: tada;
+	animation-name: tada
+}
+
+@-webkit-keyframes hvr-pulse-grow {
+	to {
+		-webkit-transform: scale(1.1);
+		transform: scale(1.1)
+	}
+}
+
+@keyframes hvr-pulse-grow {
+	to {
+		-webkit-transform: scale(1.1);
+		transform: scale(1.1)
+	}
+}
+
+
+
+
+
+/* -------------------------------------------------- */
+
+.cludoChat-chatFab {
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    background-color: var(--mtp-chat-color-1,#01448F);
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 39px;
+    z-index: 3;
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(8, 3, 55, 0.1);
+    -webkit-animation: appear .5s both;
+    animation: appear .5s both;
+    transition: background .3s ease-in-out
+}
+
+.cludoChat-chatFab--noanim {
+    -webkit-animation: none;
+    animation: none
+}
+
+.cludoChat-chatFab--hidden {
+    display: none
+}
+
+.cludoChat-chatFab:hover {
+    background: var(--mtp-chat-color-2,#051931)
+}
+
+.cludoChat-chatFab.clicked {
+    background: var(--mtp-chat-color-2,#051931)
+}
+
+.cludoChat-chatContainer {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 998;
+    display: -webkit-flex;
+    display: flex;
+    font-family: muli,Tahoma,Arial;
+    font-size: 14px;
+    z-index:1000;
+}
+
+.cludoChat-chatContainer,.cludoChat-chatContainer * {
+    box-sizing: border-box
+}
+
+.cludoChat-chatContainer--hidden {
+    display: none
+}
+
+.cludoChat-chatContainer--open {
+    bottom: 0;
+    right: 0;
+    border: 2px solid var(--mtp-chat-color-2,#001227);
+    width: 390px;
+    height: 480px;
+    background-color: #fff;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -webkit-animation: scale-up-br .15s cubic-bezier(.39,.575,.565,1) both;
+    animation: scale-up-br .15s cubic-bezier(.39,.575,.565,1) both
+}
+
+.cludoChat-chatContainer--open button.chatContainerHeader__button>i.mtp-chat-icon-minimalize {
+    display: inline
+}
+
+.cludoChat-chatContainer--open button.chatContainerHeader__button>i.mtp-chat-icon-close {
+    display: none
+}
+
+.cludoChat-chatContainer--noanim {
+    -webkit-animation: none;
+    animation: none
+}
+
+.cludoChat-chatContainer--close {
+    -webkit-animation: scale-down-br .15s cubic-bezier(.25,.46,.45,.94) both;
+    animation: scale-down-br .15s cubic-bezier(.25,.46,.45,.94) both
+}
+
+.cludoChat-chatContainer__content {
+    display: -webkit-flex;
+    display: flex;
+    height: 100%;
+    padding: 18px 28px;
+    -webkit-flex-direction: column;
+    flex-direction: column
+}
+
+.chatFabMessage {
+    width: 168px;
+    padding: 8px 25px;
+    background: #fff;
+    z-index: 2;
+    margin: auto -12px auto auto;
+    border-radius: 18px;
+    color: var(--mtp-chat-color-2,#000e1f);
+    text-align: center;
+    font-family: roboto,Tahoma,Arial;
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 10px;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    cursor: default;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,.1);
+    transition: transform .3s ease-in-out,opacity .2s ease-in-out,color .3s ease-in-out;
+    -webkit-transform: translateX(10px);
+    transform: translateX(10px);
+    opacity: 0
+}
+
+.chatFabMessage--visible {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1
+}
+
+.chatFabMessage--hidden {
+    display: none
+}
+
+@media (max-width: 399px) {
+    .chatFabMessage {
+        display:none
+    }
+}
+
+.cludoChat-chatbox {
+	position: fixed;
+	bottom: 105px;
+	right: 20px;
+	z-index: 998;
+	margin: 0 0 -1500px;
+	background: #F7F7F7;
+	padding: 1px;
+	z-index: 100000;
+}
+
+.cludoChat-box {
+	/* background: #00bfb6; */
+	text-align: center;
+	font-weight: 900;
+	color: #F7F7F7;
+  }
+
+  .cludoChat-sb4:before {
+	content: "";
+	width: 0px;
+	height: 0px;
+	position: absolute;
+	border-left: 5px solid transparent;
+	border-right: 5px solid #32373D;
+	border-top: 5px solid #32373D;
+	border-bottom: 5px solid transparent;
+	right: 19px;
+	bottom: -11px;
+  }
+#smartchatbox_img901621879{
+	width: 300px;
+	height: 520px;
+	overflow: hidden;
+	margin:auto;
+	padding: 0;
+}
+
+#mobileCloseBtn{
+	display:none;
+}
+
+@media (hover: none)  { 
+	#chatbox{
+		display: none;
+	}
+
+	#smartchatbox_img901621879{
+		width: 100%;
+		height: 99%;
+		overflow: hidden;
+		margin:auto;
+		padding: 0;
+	}
+
+
+	#cludoChat{
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+		margin:auto;
+		padding: 0;
+	}
+
+	.cludoChat-box{
+		height: 100%;
+		width: 100%;
+		top: 0;
+		left: 0;
+	}
+
+	#mobileCloseBtn{
+		display: block;
+		float: right;
+		border-radius: 23px;
+		height: 15px;
+		border: none;
+		font-size: 8px;
+		font-family: roboto,Tahoma,Arial;
+		font-weight: 500;
+		color: #01448F;
+	}
+}
+
+#chat,
+#chat:after,
+.cludoChat-chatbox {
+	transition: .6s ease opacity,.6s ease transform;
+}
+
+#chat,
+#close-chat,
+.minim-button,
+.maxi-button,
+.chat-text {
+	font-weight: 700;
+	cursor: pointer;
+	font-family: Arial, sans-serif;
+	text-align: center;
+	height: 20px;
+	line-height: 20px
+}
+
+#chat,
+#close-chat,
+.chatbox {
+	border: 2px solid rgb(1, 16, 34)
+}
+
+#chat:after,
+#chat:before {
+	position: absolute;
+	border-style: solid;
+	content: ""
+}
+
+
+
+#close-chat {
+	position: absolute;
+	top: 2px;
+	right: 2px;
+	font-size: 24px;
+	border: 1px solid #dedede;
+	width: 20px;
+	background: #fefefe;
+	z-index: 2
+}
+
+#minim-chat,
+#maxi-chat {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 20px;
+	line-height: 20px;
+	cursor: pointer;
+	z-index: 1
+}
+
+.minim-button {
+	position: absolute;
+	top: 2px;
+	right: 26px;
+	font-size: 24px;
+	border: 1px solid #dedede;
+	width: 20px;
+	background: #fefefe
+}
+
+.maxi-button {
+	position: absolute;
+	top: 2px;
+	right: 26px;
+	font-size: 24px;
+	border: 1px solid #dedede;
+	width: 20px;
+	background: #fefefe;
+}
+
+.chat-text {
+	position: absolute;
+	top: 5px;
+	left: 10px;
+	font-size: 16px;
+}
+
+#chat {
+	width: 40px;
+	border-radius: 3px;
+	padding: 2px 8px;
+	font-size: 12px;
+	background: #fff;
+	-webkit-transform: translateZ(0);
+	transform: translateZ(0)
+}
+
+#chat:before {
+	border-width: 10px 11px 0 0;
+	border-color: #A8A8A8 transparent transparent;
+	left: 7px;
+	bottom: -10px
+}
+
+#chat:after {
+	border-width: 9px 8px 0 0;
+	border-color: #fff transparent transparent;
+	left: 8px;
+	bottom: -8px
+}
+
+#chat:hover {
+	background: #ddd;
+	-webkit-animation-name: hvr-pulse-grow;
+	animation-name: hvr-pulse-grow;
+	-webkit-animation-duration: .3s;
+	animation-duration: .3s;
+	-webkit-animation-timing-function: linear;
+	animation-timing-function: linear;
+	-webkit-animation-iteration-count: infinite;
+	animation-iteration-count: infinite;
+	-webkit-animation-direction: alternate;
+	animation-direction: alternate
+}
+
+#chat:hover:after {
+	border-color: #ddd transparent transparent!important
+}
+
+.animated-chat {
+	-webkit-animation-duration: 1s;
+	animation-duration: 1s;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+	-webkit-animation-timing-function: ease-in;
+	animation-timing-function: ease-in
+}
+
+@-webkit-keyframes tada {
+	0% {
+		-webkit-transform: scale(1)
+	}
+	10%,
+	20% {
+		-webkit-transform: scale(.9)rotate(-3deg)
+	}
+	30%,
+	50%,
+	70%,
+	90% {
+		-webkit-transform: scale(1.1)rotate(3deg)
+	}
+	40%,
+	60%,
+	80% {
+		-webkit-transform: scale(1.1)rotate(-3deg)
+	}
+	100% {
+		-webkit-transform: scale(1)rotate(0)
+	}
+}
+
+@keyframes tada {
+	0% {
+		transform: scale(1)
+	}
+	10%,
+	20% {
+		transform: scale(.9)rotate(-3deg)
+	}
+	30%,
+	50%,
+	70%,
+	90% {
+		transform: scale(1.1)rotate(3deg)
+	}
+	40%,
+	60%,
+	80% {
+		transform: scale(1.1)rotate(-3deg)
+	}
+	100% {
+		transform: scale(1)rotate(0)
+	}
+}
+
+.tada {
+	-webkit-animation-name: tada;
+	animation-name: tada
+}
+
+@-webkit-keyframes hvr-pulse-grow {
+	to {
+		-webkit-transform: scale(1.1);
+		transform: scale(1.1)
+	}
+}
+
+@keyframes hvr-pulse-grow {
+	to {
+		-webkit-transform: scale(1.1);
+		transform: scale(1.1)
+	}
+}
+
+
+
+
+
+/* -------------------------------------------------- */
+
+.cludoChat-chatFab {
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    background-color: var(--mtp-chat-color-1,#01448F);
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 39px;
+    z-index: 3;
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(8, 3, 55, 0.1);
+    -webkit-animation: appear .5s both;
+    animation: appear .5s both;
+    transition: background .3s ease-in-out
+}
+
+.cludoChat-chatFab--noanim {
+    -webkit-animation: none;
+    animation: none
+}
+
+.cludoChat-chatFab--hidden {
+    display: none
+}
+
+.cludoChat-chatFab:hover {
+    background: var(--mtp-chat-color-2,#051931)
+}
+
+.cludoChat-chatFab.clicked {
+    background: var(--mtp-chat-color-2,#051931)
+}
+
+.cludoChat-chatContainer {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 998;
+    display: -webkit-flex;
+    display: flex;
+    font-family: muli,Tahoma,Arial;
+    font-size: 14px;
+    z-index:1000;
+}
+
+.cludoChat-chatContainer,.cludoChat-chatContainer * {
+    box-sizing: border-box
+}
+
+.cludoChat-chatContainer--hidden {
+    display: none
+}
+
+.cludoChat-chatContainer--open {
+    bottom: 0;
+    right: 0;
+    border: 2px solid var(--mtp-chat-color-2,#001227);
+    width: 390px;
+    height: 480px;
+    background-color: #fff;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -webkit-animation: scale-up-br .15s cubic-bezier(.39,.575,.565,1) both;
+    animation: scale-up-br .15s cubic-bezier(.39,.575,.565,1) both
+}
+
+.cludoChat-chatContainer--open button.chatContainerHeader__button>i.mtp-chat-icon-minimalize {
+    display: inline
+}
+
+.cludoChat-chatContainer--open button.chatContainerHeader__button>i.mtp-chat-icon-close {
+    display: none
+}
+
+.cludoChat-chatContainer--noanim {
+    -webkit-animation: none;
+    animation: none
+}
+
+.cludoChat-chatContainer--close {
+    -webkit-animation: scale-down-br .15s cubic-bezier(.25,.46,.45,.94) both;
+    animation: scale-down-br .15s cubic-bezier(.25,.46,.45,.94) both
+}
+
+.cludoChat-chatContainer__content {
+    display: -webkit-flex;
+    display: flex;
+    height: 100%;
+    padding: 18px 28px;
+    -webkit-flex-direction: column;
+    flex-direction: column
+}
+
+.chatFabMessage {
+    width: 168px;
+    padding: 8px 25px;
+    background: #fff;
+    z-index: 2;
+    margin: auto -12px auto auto;
+    border-radius: 18px;
+    color: var(--mtp-chat-color-2,#000e1f);
+    text-align: center;
+    font-family: roboto,Tahoma,Arial;
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 10px;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    cursor: default;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,.1);
+    transition: transform .3s ease-in-out,opacity .2s ease-in-out,color .3s ease-in-out;
+    -webkit-transform: translateX(10px);
+    transform: translateX(10px);
+    opacity: 0
+}
+
+.chatFabMessage--visible {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1
+}
+
+.chatFabMessage--hidden {
+    display: none
+}
+
+@media (max-width: 399px) {
+    .chatFabMessage {
+        display:none
+    }
+}
+
+.cludoChat-chatbox {
+	position: fixed;
+	bottom: 105px;
+	right: 20px;
+	z-index: 998;
+	margin: 0 0 -1500px;
+	background: #F7F7F7;
+	padding: 1px;
+	z-index: 100000;
+}
+
+.cludoChat-box {
+	/* background: #00bfb6; */
+	text-align: center;
+	font-weight: 900;
+	color: #F7F7F7;
+  }
+
+  .cludoChat-sb4:before {
+	content: "";
+	width: 0px;
+	height: 0px;
+	position: absolute;
+	border-left: 5px solid transparent;
+	border-right: 5px solid #32373D;
+	border-top: 5px solid #32373D;
+	border-bottom: 5px solid transparent;
+	right: 19px;
+	bottom: -11px;
+  }
+#smartchatbox_img901621879{
+	width: 300px;
+	height: 520px;
+	overflow: hidden;
+	margin:auto;
+	padding: 0;
+}
+
+#mobileCloseBtn{
+	display:none;
+}
+
+@media (hover: none)  { 
+	#chatbox{
+		display: none;
+	}
+
+	#smartchatbox_img901621879{
+		width: 100%;
+		height: 99%;
+		overflow: hidden;
+		margin:auto;
+		padding: 0;
+	}
+
+
+	#cludoChat{
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+		margin:auto;
+		padding: 0;
+	}
+
+	.cludoChat-box{
+		height: 100%;
+		width: 100%;
+		top: 0;
+		left: 0;
+	}
+
+	#mobileCloseBtn{
+		display: block;
+		float: right;
+		border-radius: 23px;
+		height: 15px;
+		border: none;
+		font-size: 8px;
+		font-family: roboto,Tahoma,Arial;
+		font-weight: 500;
+		color: #01448F;
+	}
+}
+
+#chat,
+#chat:after,
+.cludoChat-chatbox {
+	transition: .6s ease opacity,.6s ease transform;
+}
+
+#chat,
+#close-chat,
+.minim-button,
+.maxi-button,
+.chat-text {
+	font-weight: 700;
+	cursor: pointer;
+	font-family: Arial, sans-serif;
+	text-align: center;
+	height: 20px;
+	line-height: 20px
+}
+
+#chat,
+#close-chat,
+.chatbox {
+	border: 2px solid rgb(1, 16, 34)
+}
+
+#chat:after,
+#chat:before {
+	position: absolute;
+	border-style: solid;
+	content: ""
+}
+
+
+
+#close-chat {
+	position: absolute;
+	top: 2px;
+	right: 2px;
+	font-size: 24px;
+	border: 1px solid #dedede;
+	width: 20px;
+	background: #fefefe;
+	z-index: 2
+}
+
+#minim-chat,
+#maxi-chat {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 20px;
+	line-height: 20px;
+	cursor: pointer;
+	z-index: 1
+}
+
+.minim-button {
+	position: absolute;
+	top: 2px;
+	right: 26px;
+	font-size: 24px;
+	border: 1px solid #dedede;
+	width: 20px;
+	background: #fefefe
+}
+
+.maxi-button {
+	position: absolute;
+	top: 2px;
+	right: 26px;
+	font-size: 24px;
+	border: 1px solid #dedede;
+	width: 20px;
+	background: #fefefe;
+}
+
+.chat-text {
+	position: absolute;
+	top: 5px;
+	left: 10px;
+	font-size: 16px;
+}
+
+#chat {
+	width: 40px;
+	border-radius: 3px;
+	padding: 2px 8px;
+	font-size: 12px;
+	background: #fff;
+	-webkit-transform: translateZ(0);
+	transform: translateZ(0)
+}
+
+#chat:before {
+	border-width: 10px 11px 0 0;
+	border-color: #A8A8A8 transparent transparent;
+	left: 7px;
+	bottom: -10px
+}
+
+#chat:after {
+	border-width: 9px 8px 0 0;
+	border-color: #fff transparent transparent;
+	left: 8px;
+	bottom: -8px
+}
+
+#chat:hover {
+	background: #ddd;
+	-webkit-animation-name: hvr-pulse-grow;
+	animation-name: hvr-pulse-grow;
+	-webkit-animation-duration: .3s;
+	animation-duration: .3s;
+	-webkit-animation-timing-function: linear;
+	animation-timing-function: linear;
+	-webkit-animation-iteration-count: infinite;
+	animation-iteration-count: infinite;
+	-webkit-animation-direction: alternate;
+	animation-direction: alternate
+}
+
+#chat:hover:after {
+	border-color: #ddd transparent transparent!important
+}
+
+.animated-chat {
+	-webkit-animation-duration: 1s;
+	animation-duration: 1s;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+	-webkit-animation-timing-function: ease-in;
+	animation-timing-function: ease-in
+}
+
+@-webkit-keyframes tada {
+	0% {
+		-webkit-transform: scale(1)
+	}
+	10%,
+	20% {
+		-webkit-transform: scale(.9)rotate(-3deg)
+	}
+	30%,
+	50%,
+	70%,
+	90% {
+		-webkit-transform: scale(1.1)rotate(3deg)
+	}
+	40%,
+	60%,
+	80% {
+		-webkit-transform: scale(1.1)rotate(-3deg)
+	}
+	100% {
+		-webkit-transform: scale(1)rotate(0)
+	}
+}
+
+@keyframes tada {
+	0% {
+		transform: scale(1)
+	}
+	10%,
+	20% {
+		transform: scale(.9)rotate(-3deg)
+	}
+	30%,
+	50%,
+	70%,
+	90% {
+		transform: scale(1.1)rotate(3deg)
+	}
+	40%,
+	60%,
+	80% {
+		transform: scale(1.1)rotate(-3deg)
+	}
+	100% {
+		transform: scale(1)rotate(0)
+	}
+}
+
+.tada {
+	-webkit-animation-name: tada;
+	animation-name: tada
+}
+
+@-webkit-keyframes hvr-pulse-grow {
+	to {
+		-webkit-transform: scale(1.1);
+		transform: scale(1.1)
+	}
+}
+
+@keyframes hvr-pulse-grow {
+	to {
+		-webkit-transform: scale(1.1);
+		transform: scale(1.1)
+	}
+}
+
+
+
+
+
+/* -------------------------------------------------- */
+
+.cludoChat-chatFab {
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    background-color: var(--mtp-chat-color-1,#01448F);
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 39px;
+    z-index: 3;
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(8, 3, 55, 0.1);
+    -webkit-animation: appear .5s both;
+    animation: appear .5s both;
+    transition: background .3s ease-in-out
+}
+
+.cludoChat-chatFab--noanim {
+    -webkit-animation: none;
+    animation: none
+}
+
+.cludoChat-chatFab--hidden {
+    display: none
+}
+
+.cludoChat-chatFab:hover {
+    background: var(--mtp-chat-color-2,#051931)
+}
+
+.cludoChat-chatFab.clicked {
+    background: var(--mtp-chat-color-2,#051931)
+}
+
+.cludoChat-chatContainer {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 998;
+    display: -webkit-flex;
+    display: flex;
+    font-family: muli,Tahoma,Arial;
+    font-size: 14px;
+    z-index:1000;
+}
+
+.cludoChat-chatContainer,.cludoChat-chatContainer * {
+    box-sizing: border-box
+}
+
+.cludoChat-chatContainer--hidden {
+    display: none
+}
+
+.cludoChat-chatContainer--open {
+    bottom: 0;
+    right: 0;
+    border: 2px solid var(--mtp-chat-color-2,#001227);
+    width: 390px;
+    height: 480px;
+    background-color: #fff;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -webkit-animation: scale-up-br .15s cubic-bezier(.39,.575,.565,1) both;
+    animation: scale-up-br .15s cubic-bezier(.39,.575,.565,1) both
+}
+
+.cludoChat-chatContainer--open button.chatContainerHeader__button>i.mtp-chat-icon-minimalize {
+    display: inline
+}
+
+.cludoChat-chatContainer--open button.chatContainerHeader__button>i.mtp-chat-icon-close {
+    display: none
+}
+
+.cludoChat-chatContainer--noanim {
+    -webkit-animation: none;
+    animation: none
+}
+
+.cludoChat-chatContainer--close {
+    -webkit-animation: scale-down-br .15s cubic-bezier(.25,.46,.45,.94) both;
+    animation: scale-down-br .15s cubic-bezier(.25,.46,.45,.94) both
+}
+
+.cludoChat-chatContainer__content {
+    display: -webkit-flex;
+    display: flex;
+    height: 100%;
+    padding: 18px 28px;
+    -webkit-flex-direction: column;
+    flex-direction: column
+}
+
+.chatFabMessage {
+    width: 168px;
+    padding: 8px 25px;
+    background: #fff;
+    z-index: 2;
+    margin: auto -12px auto auto;
+    border-radius: 18px;
+    color: var(--mtp-chat-color-2,#000e1f);
+    text-align: center;
+    font-family: roboto,Tahoma,Arial;
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 10px;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    cursor: default;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,.1);
+    transition: transform .3s ease-in-out,opacity .2s ease-in-out,color .3s ease-in-out;
+    -webkit-transform: translateX(10px);
+    transform: translateX(10px);
+    opacity: 0
+}
+
+.chatFabMessage--visible {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1
+}
+
+.chatFabMessage--hidden {
+    display: none
+}
+
+@media (max-width: 399px) {
+    .chatFabMessage {
+        display:none
+    }
+}
+
+.cludoChat-chatbox {
+	position: fixed;
+	bottom: 105px;
+	right: 20px;
+	z-index: 998;
+	margin: 0 0 -1500px;
+	background: #F7F7F7;
+	padding: 1px;
+	z-index: 100000;
+}
+
+.cludoChat-box {
+	/* background: #00bfb6; */
+	text-align: center;
+	font-weight: 900;
+	color: #F7F7F7;
+  }
+
+  .cludoChat-sb4:before {
+	content: "";
+	width: 0px;
+	height: 0px;
+	position: absolute;
+	border-left: 5px solid transparent;
+	border-right: 5px solid #32373D;
+	border-top: 5px solid #32373D;
+	border-bottom: 5px solid transparent;
+	right: 19px;
+	bottom: -11px;
+  }
