@@ -1,0 +1,25 @@
+const interval = setInterval(() => {
+    const loaderElement = document.querySelector(
+      '.page-loading-container .loader-container'
+    );
+    if (loaderElement) {
+      const vetLoginRoute = 'main-login-vet';
+      const defaultLoginRoute = 'main-login';
+      const currentRoute = window.location.pathname.split("/").pop();
+
+      if ([vetLoginRoute, defaultLoginRoute].includes(currentRoute)) {
+        if (currentRoute === vetLoginRoute) {
+          localStorage.setItem('isVet', true);
+        } else {
+          localStorage.setItem('isVet', false);
+        }
+      }
+
+      const isVet = localStorage.getItem('isVet');
+      if (isVet === 'true') {
+        loaderElement.classList.add('vet-filter');
+        document.querySelector('body').classList.add('vet-context');
+      }
+      clearInterval(interval);
+    }
+  }, 50);

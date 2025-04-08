@@ -1,0 +1,166 @@
+const CHAT_DOMAIN = "https://yc4lzrjezucpi13j-ext.cludo.pl";
+const DEFAULT_MOTIVE = "yc4lzr";
+const CHAT_URL = "https://yc4lzrjezucpi13j-ext.cludo.pl/clicktointeract/chat.aspx?oneContactInstance=yc4lzrjezucpi13j";
+let SYSTEM_ID = 0;
+
+window.Cludo = {
+  setup() {
+    SYSTEM_ID = window.Cludo.getSystemContextWithId();    
+    
+    window.addEventListener("message", function(e) {
+        if (e.origin !== CHAT_DOMAIN) {
+            return;
+        }
+        if(e.data == "minChat"){
+            window.Cludo.minChat();
+        }else if(e.data == "closeChat"){
+            window.Cludo.addChat();
+        }else if(e.data == "maxChat"){
+            window.Cludo.maxChat();
+        }else if (e.data == "removeCookie") {
+            this.window.localStorage.removeItem("CludoGuidToken");
+            this.window.localStorage.removeItem("ChatGuid");
+            window.Cludo.delete_cookie('CludoGuidToken');
+            window.Cludo.delete_cookie('OC_Client');
+    		var iframe = document.getElementById('cludoChat');
+    		iframe.src = CHAT_URL+"&motive="+DEFAULT_MOTIVE+"&phoneNumber="+SYSTEM_ID;
+        }else {
+            this.window.localStorage.setItem("ChatGuid", e.data);
+        }
+    });
+    Cludo.addChat();
+  },
+
+  addChat(motive = "") {
+      try {
+          window.Cludo.addViewport();
+          window.Cludo.showChat(motive);
+      }
+      catch (error){
+          console.error(error);
+      }
+  },
+
+  addViewport() {
+      var viewport = document.querySelector('meta[name="viewport"]');
+      if(viewport == null){
+          var meta = document.createElement('meta');
+          meta.name = "viewport";
+          meta.content = "width=device-width, initial-scale=1.0";
+          document.getElementsByTagName('head')[0].appendChild(meta);
+      }
+  },
+
+  showChat(motive) {
+      console.log("[CLUDO] ShowChatApi result => TRUE!");
+    
+      let iframeUrl = "";
+      const chatGuid = window.localStorage.getItem("ChatGuid");
+      var scrolling = "auto";
+      const chatMotive = motive.length > 0 ? motive : DEFAULT_MOTIVE;          
+ 
+      iframeUrl = `${CHAT_URL}&motive=${chatMotive}&phoneNumber=${SYSTEM_ID}`;
+
+      if (chatGuid !== null) {
+          iframeUrl = `${CHAT_URL}WebChat.aspx?guid=${chatGuid}`;
+      }
+
+      let chatCode = `
+          <div class="cludoChat-chatbox cludoChat-box cludoChat-sb4" id="chatbox">
+          <div id="smartchatbox_img901621879">
+                  <iframe id="cludoChat" src="${iframeUrl}" scrolling="${scrolling}" frameborder="0" width="300px" height="520px" style="border:0; margin:0; padding: 0;"></iframe>
+
+          </div>
+
+          </div>
+          <div class='cludoChat-chatContainer'>
+          <div id="chatFab" class="cludoChat-chatFab" onclick="window.Cludo.maxOrMinChat()"><img src="https://tw1p4fcn2h6qh68y-eco.cludo.pl/Static/tw1p4f/chat-lib/chat_icon.png" alt="chat_icon" /></div>
+          </div>`;
+
+      let wrapper = document.createElement('div');
+      wrapper.innerHTML = chatCode;
+
+      document.body.appendChild(wrapper);
+  },
+
+  minMobile() {
+      document.getElementById("chatbox").style.display = "none";
+  },
+
+  maxOrMinChat() {
+      let chat = document.getElementById("chatbox");
+      if (chat.style.margin == "0" || chat.style.margin == "0px") {
+          chat.style.margin = "0 0 -800px 0";
+          document.getElementById("chatbox").style.display = "none";
+          document.getElementById("chatFab").classList.remove("cludoChat-clicked")
+      } else {
+          chat.style.margin = 0;
+          document.getElementById("chatbox").style.display = "block";
+          document.getElementById("chatFab").classList.add("cludoChat-clicked")
+      }
+  },
+
+  maxChat() {  
+      document.getElementById("chatbox").style.display = "block";
+      let chat = document.getElementById("chatbox");
+      if (chat.style.margin != "0" || chat.style.margin != "0px") {
+          chat.style.margin = 0;
+          document.getElementById("chatFab").classList.add("cludoChat-clicked")
+      }
+  },
+
+  minChat() {
+      let chat = document.getElementById("chatbox");
+      if (chat.style.margin == "0" || chat.style.margin == "0px") {
+          chat.style.margin = "0 0 -800px 0";
+          document.getElementById("chatFab").classList.remove("cludoChat-clicked")
+          document.getElementById("chatbox").style.display = "none";
+      }
+  },
+
+  delete_cookie(name) {
+    document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+  },
+
+    getSystemContextWithId() {
+      let contextId = "";
+      let contextSystem = "";
+      var context = window.localStorage.getItem("context");
+      if(context){
+        var contextObject = JSON.parse(context);
+        if(contextObject){
+          contextId = contextObject.id;
+          switch(contextObject.system){
+            case "halckk":
+              contextSystem = "CKKx";
+              break;
+            case "halclientid":
+              contextSystem = "IDx";
+              break;
+            case "halckp":
+              contextSystem = "CKPx";
+              break;
+            default:
+              contextSystem = "";
+          }
+        }
+      }
+      return contextSystem + contextId;
+  },
+
+    changeSystemContext(){
+      var cludoGuidTokenItem = window.localStorage.getItem("CludoGuidToken");
+      var chatGuidItem = window.localStorage.getItem("ChatGuid");
+      if(cludoGuidTokenItem || chatGuidItem){
+        SYSTEM_ID = window.Cludo.getSystemContextWithId();
+      } else {
+        SYSTEM_ID = window.Cludo.getSystemContextWithId();
+        var iframe = document.getElementById('cludoChat');
+        iframe.src = CHAT_URL+"&motive="+DEFAULT_MOTIVE+"&phoneNumber="+SYSTEM_ID;
+      }
+  }
+}
+
+Cludo.setup();
+
+

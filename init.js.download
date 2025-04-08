@@ -1,0 +1,191 @@
+(function() {
+  if (!document.querySelector('[data-lc-mw-root]') && !document.URL.includes('login')) {
+    var scriptTag = document.querySelector('[data-lc-mw]');
+    var widgets = scriptTag.dataset.lcMw.toLowerCase().split(/[,\s]+/);
+    var path = scriptTag && (scriptTag.src || '').replace('init.js', '') || 'multiwidget/';
+    var messengerId = scriptTag.dataset.messengerId;
+
+    var styleHref = path + 'style.css';
+
+    var div = document.createElement('div');
+    div.innerHTML = `
+      <link rel="stylesheet" href="${styleHref}" />
+      <div class="lc-mw" data-lc-mw-root>
+        <button
+          type="button"
+          name="openContactMenu"
+          aria-label="Skontaktuj się z nami"
+          class="lc-mw__button lc-mw__button--big"
+        >
+          <div class="lc-mw__icon lc-mw__icon--contact"></div>
+        </button>
+        <button
+          type="button"
+          name="closeContactMenu"
+          aria-label="Zamknij menu"
+          class="lc-mw__button lc-mw__button--small"
+        >
+          <div class="lc-mw__icon lc-mw__icon--cross"></div>
+        </button>
+        <menu class="lc-mw__menu">
+          <button
+            type="button"
+            name="openLiveCall"
+            aria-label="Zadzwoń"
+            class="lc-mw__button lc-mw__button--medium"
+          >
+            <div class="lc-mw__icon lc-mw__icon--livecall"></div>
+          </button>
+          <button
+            type="button"
+            name="openMessenger"
+            aria-label="Porozmawiaj przez Messenger"
+            class="lc-mw__button lc-mw__button--medium"
+          >
+            <div class="lc-mw__icon lc-mw__icon--messenger"></div>
+          </button>
+          <button
+            type="button"
+            name="openSurfly"
+            aria-label="Udostępnij ekran"
+            class="lc-mw__button lc-mw__button--medium"
+          >
+            <div class="lc-mw__icon lc-mw__icon--surfly"></div>
+          </button>
+          <button
+            type="button"
+            name="openSurflyWithAudio"
+            aria-label="Udostępnij ekran i zadzwoń"
+            class="lc-mw__button lc-mw__button--medium"
+          >
+            <div class="lc-mw__icon lc-mw__icon--surfly--audio"></div>
+          </button>
+          <button
+            type="button"
+            name="openChat"
+            aria-label="Rozpocznij czat"
+            class="lc-mw__button lc-mw__button--medium"
+          >
+            <div class="lc-mw__icon lc-mw__icon--chat"></div>
+          </button>
+        </menu>
+      </div>
+    `;
+    document.body.appendChild(div);
+
+    var root = div.querySelector('[data-lc-mw-root]');
+
+    root.classList.add('lc-mw--align-' + (scriptTag.dataset.lcMwAlign || 'left'));
+
+    root.querySelector('button[name=openContactMenu]').addEventListener('click', function() {
+      root.classList.add('lc-mw--open');
+    });
+    root.querySelector('button[name=closeContactMenu]').addEventListener('click', function() {
+      root.classList.remove('lc-mw--open');
+    });
+    root.querySelector('.lc-mw__menu').addEventListener('click', function() {
+      root.classList.remove('lc-mw--open');
+    });
+
+    if (widgets.includes('livecall')) {
+      root.querySelector('button[name=openLiveCall]').addEventListener('click', function() {
+        window.livecallClient && window.livecallClient.queryInterest();
+      });
+    } else {
+      root.querySelector('button[name=openLiveCall]').remove();
+    }
+
+    if (widgets.includes('messenger')) {
+      let fbAttemptNumber = 0;
+      let fbLoaded = false;
+      document.head.addEventListener('load', function() {
+        window.FB && FB.Event.subscribe('customerchat.load', function() {
+          fbLoaded = true;
+        });
+      }, true);
+      function afterFBCustomerChatIsLoadedTotallyForSure(callback) {
+        if (window.FB && window.FB.CustomerChat && fbLoaded) {
+          callback();
+        } else if (fbAttemptNumber < 7) {
+          fbAttemptNumber++;
+          setTimeout(function() {
+            afterFBCustomerChatIsLoadedTotallyForSure(callback);
+          }, 100 * (fbAttemptNumber ** 2))
+        }
+      }
+
+      root.querySelector('button[name=openMessenger]').addEventListener('click', function() {
+        var el = document.querySelector('#fb-customerchat-container')
+        el && (el.style.display = 'block');
+        el = document.querySelector('#fb-root')
+        el && (el.style.display = 'block');
+
+        afterFBCustomerChatIsLoadedTotallyForSure(function() {
+          window.FB.CustomerChat.showDialog();
+        });
+      });
+
+      root.querySelector('button[name=openContactMenu]').addEventListener('click', function() {
+        try {
+          window.FB.CustomerChat.hideDialog();
+        } catch(e) {}
+      });
+    } else {
+      root.querySelector('button[name=openMessenger]').remove();
+    }
+
+    if (widgets.includes('cludo')) {
+      root.querySelector('button[name=openChat]').addEventListener('click', function() {
+        window.Cludo.maxChat();
+      });
+      root.querySelector('button[name=openContactMenu]').addEventListener('click', function() {
+        window.Cludo.minChat();
+      });
+      root.querySelector('button[name=openSurfly]').addEventListener('click', function() {
+        CludoSurfly.surfly();
+      });
+      root.querySelector('button[name=openSurflyWithAudio]').addEventListener('click', function() {
+        CludoSurfly.surflyWithAudio();
+      });
+        
+    } else if (widgets.includes('genesys')) {
+      var genesysInitialized = false;
+      function initializeGenesys() {
+        if (window.Genesys && !genesysInitialized) {
+          genesysInitialized = true;
+          window.Genesys('subscribe', 'Launcher.ready', function() {
+            var frame = document.body.querySelector('.genesys-mxg-frame');
+            var interval = setInterval(function() {
+              if (frame.style.width === '72px') {
+                clearInterval(interval);
+                frame.classList.add('ready');
+              }
+            }, 500);
+          });
+          window.Genesys('registerPlugin', 'LCMultiwidget', function(chat) {
+            root.querySelector('button[name=openChat]').addEventListener('click', function() {
+              chat.command('Messenger.open');
+            });
+            root.querySelector('button[name=openContactMenu]').addEventListener('click', function() {
+              chat.command('Messenger.close');
+            });
+          });
+        }
+      }
+      document.head.addEventListener('load', initializeGenesys, true);
+      initializeGenesys();
+    } else {
+      root.querySelector('button[name=openChat]').remove();
+    }
+
+    function waitForLoad() {
+      for (const sheet of document.styleSheets) {
+        if (sheet.href === styleHref) {
+          return root.classList.add('lc-mw--ready');
+        }
+      }
+      setTimeout(waitForLoad, 100);
+    }
+    waitForLoad();
+  }
+})();

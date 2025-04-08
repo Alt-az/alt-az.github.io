@@ -1,0 +1,30 @@
+(function() {
+    "use strict";
+
+    var containerElement = document.createElement("div");
+    containerElement.className = "livecall-widget-container";
+    document.body.appendChild(containerElement);
+
+    var supportedCharsets = ["iso-8859-2", "windows-1250", "windows-1251"];
+    var charset = (document.inputEncoding || document.characterSet || document.charset || document.defaultCharset).toLowerCase();
+    var scriptNameSuffix = "";
+    if (supportedCharsets.indexOf(charset) > -1) {
+        scriptNameSuffix = "-" + charset;
+    }
+
+    if (typeof window._livecallSettings !== 'object') {
+        window._livecallSettings = {};
+    }
+
+
+    window._livecallSettings.id = '13871';
+
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.async = true;
+        js.src = "https://yc4lzrjezucpi13j-ext.cludo.pl/WidgetApi/yc4lzr/WidgetApi/js/livecall" + scriptNameSuffix + ".js";
+        fjs.parentNode.insertBefore(js, fjs);
+    })(document, "script", "livecall-script");
+}());

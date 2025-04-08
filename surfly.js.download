@@ -1,0 +1,76 @@
+window.CludoSurfly = {
+  setup() {
+    (function (s, u, r, f, l, y) {
+      s[f] = s[f] || {
+        init: function () {
+          s[f].q = arguments;
+        },
+      };
+      l = u.createElement(r);
+      y = u.getElementsByTagName(r)[0];
+      l.async = 1;
+      l.src = 'https://surfly.com/surfly.js';
+      y.parentNode.insertBefore(l, y);
+    })(window, document, 'script', 'Surfly');
+
+    var settings = {
+      widget_key: 'ed0c5f99314947ea8321418d5f2bea00',
+      embedded_sessions_only: false,
+      block_until_agent_joins: false,
+      hide_until_agent_joins: true,
+      session_autorestore_enabled: false,
+    };
+
+    Surfly.init(settings, function (init) {
+      if (init.success && !Surfly.isInsideSession) {
+        console.log('CludoSurfly initialized correctly ', init);
+      } else {
+        console.log('CludoSurfly initialization failed', init);
+      }
+    });
+  },
+
+  surfly() {
+    if (!Surfly.isInsideSession) {
+      Surfly.session()
+        .on('session_created', function (session, event) {
+          console.log('surfly pin:', session.pin);
+          var div = document.createElement('div');
+          div.innerHTML =
+            `<dialog id="surflyPin" style="text-align:center; border: none !important; border-radius: 5px; min-width: 250px;">
+    <p style="font-size: 20px;">Twój pin surfly to:</p>
+    <p style="font-size: 22px; font-weight: 700;">` +
+            session.pin +
+            `</p>
+    <form method="dialog">
+    <button style="margin-left:auto; background: #2B3474; border: none; border-radius: 5px; box-shadow: #2B3474 0 10px 20px -10px; color: #FFFFFF; font-size: 16px; font-weight: 700; padding: 8px 18px;">Zamknij</button>
+    </form>
+  </dialog>`;
+          document.body.appendChild(div);
+          const surflyDialog = document.getElementById('surflyPin');
+          surflyDialog.showModal();
+        })
+        .startLeader();
+    }
+  },
+
+  surflyWithAudio() {
+    if (!Surfly.isInsideSession) {
+      Surfly.session()
+        .on('session_created', function (session, event) {
+          console.log('surfly pin:', session.pin);
+          //test:
+          window.open(
+            'https://yc4lzrjezucpi13j-ext.cludo.pl/clicktointeract/audio.aspx?lang=pl&motive=yc4lzrjezucpi13j&surflypin=' +
+              session.pin,
+            '_blank'
+          );
+          //prod
+          // window.open("https://yc4lzrjezucpi13j.cludo.pl/clicktointeract/audio.aspx?lang=pl&motive=??&surflypin=" + session.pin, '_blank');
+        })
+        .startLeader();
+    }
+  },
+};
+
+CludoSurfly.setup();

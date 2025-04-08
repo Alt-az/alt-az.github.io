@@ -1,0 +1,193 @@
+.lc-mw {
+  position: fixed;
+  left: 30px;
+  bottom: 30px;
+  width: 76px;
+  height: 76px;
+  display: none;
+  z-index: 2147483647;
+}
+.lc-mw--ready {
+  display: block;
+}
+.lc-mw--align-right {
+  left: auto;
+  right: 30px;
+}
+
+button.lc-mw__button {
+  display: block;
+  border: none;
+  padding: 0;
+  background: #283474;
+  border-radius: 50%;
+  border: 4px solid white;
+  box-shadow: 0 5px 5px rgba(0,0,0, 0.15);
+  cursor: pointer;
+  box-sizing: content-box;
+  opacity: 0;
+  transform: scale(0);
+  font-family: sans-serif;
+}
+button.lc-mw--ready button.lc-mw__button {
+  transition: all 200ms ease-in-out;
+  transition-property: opacity, transform;
+}
+button.lc-mw__button:hover {
+  background-color: #406BB2;
+}
+button.lc-mw__button:focus {
+  outline: none;
+}
+button.lc-mw__button:active {
+  background-color: #406BB2;
+  outline: none;
+}
+
+button.lc-mw__button--big {
+  width: 68px;
+  height: 68px;
+  position: absolute;
+  opacity: 1;
+  transform: scale(1);
+}
+.lc-mw__button--big .lc-mw__icon {
+  margin: 4px;
+}
+.lc-mw--open .lc-mw__button--big {
+  opacity: 0;
+  transform: scale(0);
+}
+
+.lc-mw__button--medium {
+  width: 48px;
+  height: 48px;
+  position: relative;
+}
+.lc-mw__button--medium .lc-mw__icon {
+  margin: -6px;
+}
+.lc-mw__button--medium::after {
+  content: attr(aria-label);
+  position: absolute;
+  background-color: rgba(0,0,0,0.9);
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 20px;
+  padding: 0 7px;
+  border-radius: 5px;
+  left: 100%;
+  margin-left: 10px;
+  top: 50%;
+  margin-top: -10px;
+  white-space: nowrap;
+  -webkit-font-smoothing: antialiased;
+}
+.lc-mw--align-right .lc-mw__button--medium::after {
+  left: auto;
+  right: 100%;
+  margin-left: 0;
+  margin-right: 10px;
+}
+.lc-mw--open .lc-mw__button--medium {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.lc-mw__button--small {
+  width: 38px;
+  height: 38px;
+  margin: 14px;
+  opacity: 0;
+}
+.lc-mw__button--small .lc-mw__icon {
+  margin: -11px;
+}
+.lc-mw--open .lc-mw__button--small {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: all;
+}
+
+.lc-mw__menu {
+  position: absolute;
+  left: 0;
+  bottom: 70px;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
+}
+.lc-mw__menu .lc-mw__button {
+  margin: 10px;
+}
+.lc-mw--open .lc-mw__menu {
+  pointer-events: all;
+}
+
+.lc-mw__icon {
+  width: 60px;
+  height: 60px;
+  background: url('./sprite.svg');
+  background-size: 420px 60px;
+  background-position: 0 0;
+}
+.lc-mw__icon--livecall {
+  background-position: -60px 0;
+}
+.lc-mw__icon--chat {
+  background-position: -120px 0;
+}
+.lc-mw__icon--messenger {
+  background-position: -180px 0;
+}
+.lc-mw__icon--cross {
+  background-position: -240px 0;
+}
+.lc-mw__icon--surfly {
+  background-position: -300px 0;
+}
+.lc-mw__icon--surfly--audio {
+  background-position: -360px 0;
+}
+
+/* usuĹ ikonÄ Livecall */
+
+.livecall-popover, .livecall-minimized, .livecall-widget-container .livecall-callback-v1-widget .livecall-callback-v1-overlay-container {
+  display: none !important;
+}
+
+/* usuĹ ikonÄ Genesys */
+
+.genesys-mxg-frame {
+  display: none;
+}
+.genesys-mxg-frame.ready {
+  display: block;
+}
+.genesys-mxg-frame.ready[style*="width: 72px"] {
+  display: none;
+}
+
+/* usuĹ ikonÄ FB */
+
+.fb_dialog_content {
+  display: none;
+}
+
+#fb-customerchat-container, #fb-root {
+  display: none;
+}
+
+/* usuĹ ikonÄ Cludo */
+
+.cludoChat-chatFab {
+  display: none !important;
+}
+
+
+@media (max-width: 1007px) {
+  .lc-mw {
+    z-index: 100;
+  }
+}
